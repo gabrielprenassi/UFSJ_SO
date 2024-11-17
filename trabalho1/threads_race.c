@@ -72,14 +72,14 @@ int main() {
         pthread_create(&threads[i], NULL, thread_func, id);
     }
 
-    // Thread princiapl aguarda o termino da corrida
+    // Thread principal aguarda o termino da corrida
     pthread_mutex_lock(&mutex);
     while (vencedor == -1) {
-        pthread_cond_wait(&cond, &mutex); // Thread princiapl acorda quando a variavel vencedor for alterada
+        pthread_cond_wait(&cond, &mutex); // Thread principal acorda quando a variavel vencedor for alterada
     }
     pthread_mutex_unlock(&mutex);
 
-    // Thread princiapl espera as threads terminarem
+    // Thread principal espera as threads terminarem
     for (int i = 0; i < NUM_THREADS; i++) {
         pthread_join(threads[i], NULL);
     }
